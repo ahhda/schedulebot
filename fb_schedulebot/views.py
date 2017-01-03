@@ -72,7 +72,7 @@ def message_received(fbid, received_message):
         pprint("NEW USER")
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid
         user_details_params = {'fields':'first_name,last_name', 'access_token':access_token}
-        user_details = requests.get(user_details_url, user_details_params).json()
+        user_details = requests.get(user_details_url, params=user_details_params).json()
         pprint(user_details)
         first_name = user_details['first_name']
         last_name = user_details['last_name']
