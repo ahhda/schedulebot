@@ -15,6 +15,9 @@ access_token = 'EAABvEGv4tasBAJWr2P6Do5m0AobAbYBl3ArirGSEfrSQlY30rIc5dfi8vqVfzOJ
 questions = ["""Question 1: Which food don’t you like? Why don’t you like it?
 Listen: http://neonlanguages.com/okcorrect/intermediate/trial-question1.mp3"""]
 
+first_message = """Hello! Antes de empezar, solo necesito saber la dirección de email que utilizaste
+para inscribir. ¿Cual es?"""
+
 def send_message_generic(fbid, message):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+access_token
     response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":message}})
@@ -40,6 +43,9 @@ def send_question(fbid, day):
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg)
     pprint(status.json())
 
+def new_user_messages(fbid):
+    send_message_generic(fbid, first_message)
+
 def message_received(fbid, received_message):           
     # post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+access_token
     # response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":received_message}})
@@ -52,6 +58,11 @@ def message_received(fbid, received_message):
             send_message_generic(fbid, "Test Working")
         elif received_message == "restart":
             c.current_day = 0
+            c.first_message = 0
+            c.save()
+            new_user_messages(fbid)
+        elif c.first_message == 0:
+            c.first_message = 1
             c.save()
             send_welcome_message(fbid)
             send_question(fbid, 0)
@@ -68,8 +79,9 @@ def message_received(fbid, received_message):
         print first_name, last_name, fbid
         new_user = fb_user(fb_id=fbid, first_name=first_name, last_name=last_name)
         new_user.save()
-        send_welcome_message(fbid)
-        send_question(fbid, 0)
+        new_user_messages(fbid)
+        # send_welcome_message(fbid)
+        # send_question(fbid, 0)
 
 class ScheduleBotView(generic.View):
     @method_decorator(csrf_exempt)
