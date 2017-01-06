@@ -10,7 +10,11 @@ from pprint import pprint
 from models import *
 # Create your views here.
 
-access_token = 'EAABvEGv4tasBAJWr2P6Do5m0AobAbYBl3ArirGSEfrSQlY30rIc5dfi8vqVfzOJI1JmKFtsnDv1tPxRC3nc53xrgy6Hb3GknwNOkq6xd6RC7CExQpZB52q99Ud7JTCb0BDfPCVrSZATzFsrJTMhItL4hl6me79h5h3JiqbLgZDZD'
+#access token for chatbot testing
+#access_token = 'EAABvEGv4tasBAJWr2P6Do5m0AobAbYBl3ArirGSEfrSQlY30rIc5dfi8vqVfzOJI1JmKFtsnDv1tPxRC3nc53xrgy6Hb3GknwNOkq6xd6RC7CExQpZB52q99Ud7JTCb0BDfPCVrSZATzFsrJTMhItL4hl6me79h5h3JiqbLgZDZD'
+#access token for ok correct
+access_token = 'EAACEZCP91xugBAILEC6Ghj10y8KOIANzZCvBDMS66ZAi1HsFAFvw2ZBx74z6iffoybevZBimTMhCZA00bZBw4u3yD7TDFOXcrJEsCo57u8FHIO1hkgF6vITgtthqmKmnFCZCqVjZBCYYJkWhophZBQol2Mh6GMphZBtbXzXbimkK9JBCgZDZD'
+
 
 questions = ["""Question 1: Which food don’t you like? Why don’t you like it?
 Listen: http://neonlanguages.com/okcorrect/intermediate/trial-question1.mp3"""]

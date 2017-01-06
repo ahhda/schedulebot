@@ -1,0 +1,1 @@
+0 19 * * * cd ~/schedulebot && ./send_msg.sh >> hello.txt 2>&1
