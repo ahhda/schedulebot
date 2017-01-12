@@ -17,7 +17,7 @@ access_token = 'EAACEZCP91xugBAILEC6Ghj10y8KOIANzZCvBDMS66ZAi1HsFAFvw2ZBx74z6iff
 
 
 questions = ["""Question 1: Which food don’t you like? Why don’t you like it?
-Listen: http://neonlanguages.com/okcorrect/intermediate/trial-question1.mp3"""]
+Listen: http://okcorrect.com/free/q1.mp3"""]
 
 first_message = """Hello! Antes de empezar, solo necesito saber la dirección de email que utilizaste
 para inscribir. ¿Cual es?"""
