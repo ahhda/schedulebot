@@ -23,6 +23,8 @@ class Command(BaseCommand):
             try:
                 print "Sending message to ", item.first_name
                 current_day = item.current_day
+                if item.first_message == 0:
+                    continue
                 if current_day >= len(trial_messages):
                     if item.label == 1:
                         send_message_generic(item.fb_id, main_messages[current_day-len(trial_messages)])
@@ -30,6 +32,11 @@ class Command(BaseCommand):
                         itemcopy = item
                         itemcopy.current_day = current_day
                         itemcopy.save()
+                    continue
+                if item.first_message == 1 and current_day == 0:
+                    itemcopy = item
+                    itemcopy.first_message = 2
+                    itemcopy.save()
                     continue
                 send_message_generic(item.fb_id, trial_messages[current_day])
                 current_day += 1
