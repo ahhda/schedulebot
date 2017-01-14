@@ -13,7 +13,7 @@ from models import *
 #access token for chatbot testing
 #access_token = 'EAABvEGv4tasBAJWr2P6Do5m0AobAbYBl3ArirGSEfrSQlY30rIc5dfi8vqVfzOJI1JmKFtsnDv1tPxRC3nc53xrgy6Hb3GknwNOkq6xd6RC7CExQpZB52q99Ud7JTCb0BDfPCVrSZATzFsrJTMhItL4hl6me79h5h3JiqbLgZDZD'
 #access token for ok correct
-access_token = 'EAACEZCP91xugBAILEC6Ghj10y8KOIANzZCvBDMS66ZAi1HsFAFvw2ZBx74z6iffoybevZBimTMhCZA00bZBw4u3yD7TDFOXcrJEsCo57u8FHIO1hkgF6vITgtthqmKmnFCZCqVjZBCYYJkWhophZBQol2Mh6GMphZBtbXzXbimkK9JBCgZDZD'
+access_token = 'EAACEZCP91xugBAHIl5cZBqVIMb95Kgyw6IWQhsa3XCBa66pnJo5igKLpZCpZAGZA9Uh3nw4NMbAyv0aZC4s12tvv6a6BhLkhQbyVd2VAbStJkbhy3kUG2GEtjJDzda9qt7nXUx0f8Udnu9E5DrpKAnnlQjLgXOPh3QBN5mvZBFj5AZDZD'
 
 
 questions = ["""Question 1: Which food don’t you like? Why don’t you like it?
@@ -113,9 +113,11 @@ class ScheduleBotView(generic.View):
             for message in entry['messaging']:
                 # Check to make sure the received call is a message call
                 # This might be delivery, optin, postback for other events 
-                if 'message' in message:
+                if 'message' in message and 'text' in message['message']:
                     # Print the message to the terminal
                     print "MESSAGE"
                     pprint(message)
                     message_received(message['sender']['id'], message['message']['text'])
+                else:
+                    print "STICKER"
         return HttpResponse()
