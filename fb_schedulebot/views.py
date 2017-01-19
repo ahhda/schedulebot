@@ -19,8 +19,7 @@ access_token = 'EAACEZCP91xugBAHIl5cZBqVIMb95Kgyw6IWQhsa3XCBa66pnJo5igKLpZCpZAGZ
 questions = ["""Question 1: Which food don’t you like? Why don’t you like it?
 Listen: http://okcorrect.com/free/q1.mp3"""]
 
-first_message = """Hello! Antes de empezar, solo necesito saber la dirección de email que utilizaste
-para inscribir. ¿Cual es?"""
+first_message = """Hello! Antes de empezar, solo necesito saber la dirección de email que utilizaste para inscribir. ¿Cual es?"""
 
 def send_message_generic(fbid, message):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+access_token
@@ -31,11 +30,8 @@ def send_message_generic(fbid, message):
 def send_welcome_message(fbid):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+access_token
     message1 = """Gracias. La prueba gratis empieza hoy.
-
-Antes de empezar, lee estas reglas y consejos:
-http://immersoes.weebly.com/reglasyconsejos.html
-
-Abajo tienes la primera pregunta. Escribe tu respuesta en inglés y la corregiré dentro de 24 horas."""
+Antes de empezar, lee estas reglas y consejos: http://bit.ly/2jMojzD
+Abajo tienes la primera pregunta. Escribe tu respuesta en inglés y la corregiré dentro de 24 horas."""
     response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":message1}})
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg)
     pprint(status.json())
